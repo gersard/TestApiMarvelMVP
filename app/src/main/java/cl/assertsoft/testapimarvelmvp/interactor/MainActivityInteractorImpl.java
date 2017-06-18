@@ -34,7 +34,7 @@ public class MainActivityInteractorImpl implements MainActivityInteractor {
         String publicApikey = context.getString(R.string.public_api_key);
         String hash = context.getString(R.string.hash_api_key);
 
-        Call<ResponseApiMarvel> call = ApiAdapter.getApiService().getCharacters(ts,publicApikey,hash);
+        Call<ResponseApiMarvel> call = ApiAdapter.getApiService().getCharacters(ts,publicApikey,hash,80);
         call.enqueue(new Callback<ResponseApiMarvel>() {
             @Override
             public void onResponse(Call<ResponseApiMarvel> call, Response<ResponseApiMarvel> response) {
