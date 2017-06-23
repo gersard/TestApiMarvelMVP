@@ -1,15 +1,19 @@
 package cl.assertsoft.testapimarvelmvp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -17,8 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cl.assertsoft.testapimarvelmvp.R;
 import cl.assertsoft.testapimarvelmvp.adapter.ListaCharactersAdapter;
-import cl.assertsoft.testapimarvelmvp.interfaces.MainActivityPresenter;
-import cl.assertsoft.testapimarvelmvp.interfaces.MainActivityView;
+import cl.assertsoft.testapimarvelmvp.presenter.MainActivityPresenter;
+import cl.assertsoft.testapimarvelmvp.view.interfaces.MainActivityView;
 import cl.assertsoft.testapimarvelmvp.model.Result;
 import cl.assertsoft.testapimarvelmvp.presenter.MainActivityPresenterImpl;
 
@@ -87,6 +91,22 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     public void showResults(List<Result> characters) {
         if (adapter != null) {
             adapter.addCharacters(characters);
+            adapter.setItemClickListener(new ListaCharactersAdapter.ItemClickListener() {
+                @Override
+                public void onItemClick(Result result, int position) {
+                    presenter.convertDataToString(result);
+                }
+            });
         }
     }
+
+    @Override
+    public void goToDetail(String character) {
+//        Log.d("TEST",character.getName());
+        Intent intent = new Intent(this,DetalleCharacterActivity.class);
+        intent.putExtra("info",character);
+        startActivity(intent);
+    }
+
+
 }

@@ -1,6 +1,8 @@
-package cl.assertsoft.testapimarvelmvp.interfaces;
+package cl.assertsoft.testapimarvelmvp.interactor;
 
 import android.content.Context;
+
+import cl.assertsoft.testapimarvelmvp.model.Result;
 
 /**
  * Created by Gerardo on 17-06-2017.
@@ -9,5 +11,6 @@ import android.content.Context;
 public interface MainActivityInteractor {
 
     void getCharactersInteractor(Context context);
+    void convertResultToJson(Result character);
 
 }

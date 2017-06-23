@@ -1,4 +1,6 @@
-package cl.assertsoft.testapimarvelmvp.interfaces;
+package cl.assertsoft.testapimarvelmvp.view.interfaces;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -13,4 +15,5 @@ public interface MainActivityView {
     void actionProgress(boolean show);
     void showError(String error);
     void showResults(List<Result> characters);
+    void goToDetail(String character);
 }

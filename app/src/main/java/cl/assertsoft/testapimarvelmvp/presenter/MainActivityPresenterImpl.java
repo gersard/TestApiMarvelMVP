@@ -2,12 +2,13 @@ package cl.assertsoft.testapimarvelmvp.presenter;
 
 import android.content.Context;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import cl.assertsoft.testapimarvelmvp.interactor.MainActivityInteractorImpl;
-import cl.assertsoft.testapimarvelmvp.interfaces.MainActivityInteractor;
-import cl.assertsoft.testapimarvelmvp.interfaces.MainActivityPresenter;
-import cl.assertsoft.testapimarvelmvp.interfaces.MainActivityView;
+import cl.assertsoft.testapimarvelmvp.interactor.MainActivityInteractor;
+import cl.assertsoft.testapimarvelmvp.view.interfaces.MainActivityView;
 import cl.assertsoft.testapimarvelmvp.model.Result;
 
 /**
@@ -48,6 +49,18 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
         if (mainActivityView != null){
             mainActivityView.actionProgress(true);
             mainActivityInteractor.getCharactersInteractor(context);
+        }
+    }
+
+    @Override
+    public void convertDataToString(Result character) {
+        mainActivityInteractor.convertResultToJson(character);
+    }
+
+    @Override
+    public void goToDetail(String character) {
+        if (mainActivityView != null){
+            mainActivityView.goToDetail(character);
         }
     }
 }

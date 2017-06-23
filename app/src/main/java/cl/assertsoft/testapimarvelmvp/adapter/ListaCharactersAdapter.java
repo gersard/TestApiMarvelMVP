@@ -26,6 +26,7 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
 
     Context context;
     List<Result> results;
+    private ItemClickListener itemClickListener;
 
     public ListaCharactersAdapter(Context context) {
         this.context = context;
@@ -39,11 +40,20 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
     }
 
     @Override
-    public void onBindViewHolder(CharacterViewHolder holder, int position) {
-        Result currentCharacter = results.get(position);
+    public void onBindViewHolder(CharacterViewHolder holder, final int position) {
+        final Result currentCharacter = results.get(position);
         holder.setCharacterPhoto(String.format("%1$s.%2$s", currentCharacter.getThumbnail().getPath(),
                 currentCharacter.getThumbnail().getExtension()));
         holder.setTxtCharacterName(currentCharacter.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null) {
+                    itemClickListener.onItemClick(currentCharacter, position);
+                }
+            }
+        });
     }
 
     @Override
@@ -58,15 +68,25 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
         }
     }
 
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick(Result result, int position);
+    }
+
     public class CharacterViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.img_view_character_photo)
         ImageView ivCharacterPhoto;
         @BindView(R.id.txt_character_name)
         TextView txtCharacterName;
+        View itemView;
 
         public CharacterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            this.itemView = itemView;
         }
 
         public void setCharacterPhoto(String photoUrl) {

@@ -1,4 +1,6 @@
-package cl.assertsoft.testapimarvelmvp.interfaces;
+package cl.assertsoft.testapimarvelmvp.presenter;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -13,5 +15,7 @@ public interface MainActivityPresenter {
     void showErrorPresenter(String error);
     void showResultPresenter(List<Result> results);
     void getDataCharacters();
+    void convertDataToString(Result character);
+    void goToDetail(String character);
 
 }

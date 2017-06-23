@@ -1,14 +1,14 @@
 package cl.assertsoft.testapimarvelmvp.interactor;
 
 import android.content.Context;
-import android.util.Log;
+
+import com.google.gson.Gson;
 
 import java.util.List;
 
 import cl.assertsoft.testapimarvelmvp.R;
 import cl.assertsoft.testapimarvelmvp.api.ApiAdapter;
-import cl.assertsoft.testapimarvelmvp.interfaces.MainActivityInteractor;
-import cl.assertsoft.testapimarvelmvp.interfaces.MainActivityPresenter;
+import cl.assertsoft.testapimarvelmvp.presenter.MainActivityPresenter;
 import cl.assertsoft.testapimarvelmvp.model.ResponseApiMarvel;
 import cl.assertsoft.testapimarvelmvp.model.Result;
 import retrofit2.Call;
@@ -49,5 +49,12 @@ public class MainActivityInteractorImpl implements MainActivityInteractor {
                 mainActivityPresenter.showErrorPresenter(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void convertResultToJson(Result character) {
+        Gson gson = new Gson();
+        String charact = gson.toJson(character);
+        mainActivityPresenter.goToDetail(charact);
     }
 }
