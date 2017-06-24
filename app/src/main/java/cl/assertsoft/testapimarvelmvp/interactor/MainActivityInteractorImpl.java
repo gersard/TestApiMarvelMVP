@@ -52,6 +52,29 @@ public class MainActivityInteractorImpl implements MainActivityInteractor {
     }
 
     @Override
+    public void getCharactersSearched(Context context, String name) {
+        String ts = context.getString(R.string.timestamp_api_key);
+        String publicApikey = context.getString(R.string.public_api_key);
+        String hash = context.getString(R.string.hash_api_key);
+
+        Call<ResponseApiMarvel> call = ApiAdapter.getApiService().getCharactersSearched(ts,publicApikey,hash,name);
+        call.enqueue(new Callback<ResponseApiMarvel>() {
+            @Override
+            public void onResponse(Call<ResponseApiMarvel> call, Response<ResponseApiMarvel> response) {
+                if (response.body() != null){
+                    List<Result> results = response.body().getData().getResults();
+                    mainActivityPresenter.showResultPresenter(results);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseApiMarvel> call, Throwable t) {
+                mainActivityPresenter.showErrorPresenter(t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public void convertResultToJson(Result character) {
         Gson gson = new Gson();
         String charact = gson.toJson(character);

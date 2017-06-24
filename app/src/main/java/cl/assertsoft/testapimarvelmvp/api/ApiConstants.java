@@ -16,5 +16,6 @@ public class ApiConstants {
     public static final String PARAM_API_KEY = "apikey";
     public static final String PARAM_HASH = "hash";
     public static final String PARAM_LIMIT = "limit";
+    public static final String PARAM_NAME_START = "nameStartsWith";
 
 }

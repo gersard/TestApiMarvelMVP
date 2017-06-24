@@ -63,4 +63,13 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
             mainActivityView.goToDetail(character);
         }
     }
+
+    @Override
+    public void getCharactersSearched(String character) {
+        if (mainActivityView != null){
+            mainActivityView.actionProgress(true);
+            mainActivityInteractor.getCharactersSearched(context,character);
+        }
+
+    }
 }

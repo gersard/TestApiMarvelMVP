@@ -11,6 +11,7 @@ import cl.assertsoft.testapimarvelmvp.model.Result;
 public interface MainActivityInteractor {
 
     void getCharactersInteractor(Context context);
+    void getCharactersSearched(Context context, String name);
     void convertResultToJson(Result character);
 
 }

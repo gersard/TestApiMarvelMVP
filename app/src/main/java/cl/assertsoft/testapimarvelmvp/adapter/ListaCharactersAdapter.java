@@ -63,8 +63,11 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
 
     public void addCharacters(List<Result> results) {
         if (results != null){
-            this.results.addAll(results);
-            notifyItemRangeInserted(getItemCount()-1,results.size());
+//            this.results.addAll(results);
+            this.results = results;
+//            notifyItemRangeInserted(0,results.size());
+//            notifyItemRangeChanged(0,results.size());
+            notifyDataSetChanged();
         }
     }
 

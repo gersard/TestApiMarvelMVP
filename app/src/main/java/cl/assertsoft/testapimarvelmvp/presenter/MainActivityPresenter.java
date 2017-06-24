@@ -17,5 +17,6 @@ public interface MainActivityPresenter {
     void getDataCharacters();
     void convertDataToString(Result character);
     void goToDetail(String character);
+    void getCharactersSearched(String character);
 
 }
