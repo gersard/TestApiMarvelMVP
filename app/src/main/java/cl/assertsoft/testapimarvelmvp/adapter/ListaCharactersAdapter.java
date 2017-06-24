@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +56,14 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
                 }
             }
         });
+
+        holder.checkFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+
     }
 
     @Override
@@ -84,6 +94,8 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
         ImageView ivCharacterPhoto;
         @BindView(R.id.txt_character_name)
         TextView txtCharacterName;
+        @BindView(R.id.check_character_favorite)
+        CheckBox checkFavorite;
         View itemView;
 
         public CharacterViewHolder(View itemView) {

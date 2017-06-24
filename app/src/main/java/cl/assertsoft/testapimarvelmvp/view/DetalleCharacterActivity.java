@@ -57,7 +57,6 @@ public class DetalleCharacterActivity extends AppCompatActivity implements Detai
         Glide.with(this)
                 .load(character.getThumbnail().getPath()+"."+character.getThumbnail().getExtension())
                 .into(imageCharacter);
-
         txtCharacterName.setText(character.getName());
         txtCharacterInfo.setText(character.getDescription());
     }
