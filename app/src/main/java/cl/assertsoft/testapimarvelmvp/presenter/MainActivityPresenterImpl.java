@@ -86,4 +86,11 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
             mainActivityView.showMessageFavorite(name,isFavorite);
         }
     }
+
+    @Override
+    public void noResultsFound() {
+        if (mainActivityView != null){
+            mainActivityView.noResultsFound();
+        }
+    }
 }

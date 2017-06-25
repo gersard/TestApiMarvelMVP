@@ -18,9 +18,11 @@
         android:indeterminateTint="@color/colorPrimary"
         android:visibility="gone" />
 
-    <android.support.v7.widget.RecyclerView
+    <cl.assertsoft.testapimarvelmvp.view.custom.RecyclerViewWithEmptySupport
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/empty_recycler_view"/>
 
 </LinearLayout>

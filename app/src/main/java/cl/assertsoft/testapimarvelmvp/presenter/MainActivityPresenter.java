@@ -20,5 +20,6 @@ public interface MainActivityPresenter {
     void getCharactersSearched(String character);
     void setFavoriteCharacter(Result character, boolean isFavorite);
     void showMessageFavorite(String name, boolean isFavorite);
+    void noResultsFound();
 
 }

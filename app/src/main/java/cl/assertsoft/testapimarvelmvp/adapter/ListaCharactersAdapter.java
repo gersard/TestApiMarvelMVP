@@ -66,7 +66,7 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (itemClickListener != null && buttonView.isShown()) {
-                    itemClickListener.onCheckedChangeListener(currentCharacter, isChecked);
+                    itemClickListener.onCheckedChangeListener(currentCharacter,holder.checkFavorite ,isChecked);
                 }
             }
         });
@@ -86,6 +86,7 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
 //            notifyItemRangeChanged(0,results.size());
             notifyDataSetChanged();
         }
+
     }
 
     public boolean isCharacterFavorite(String name){
@@ -104,7 +105,7 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
 
     public interface ItemClickListener {
         void onItemClick(Result result, int position);
-        void onCheckedChangeListener(Result character, boolean isFavorite);
+        void onCheckedChangeListener(Result character,CheckBox checkBox ,boolean isFavorite);
     }
 
     public class CharacterViewHolder extends RecyclerView.ViewHolder {

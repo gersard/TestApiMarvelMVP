@@ -65,7 +65,12 @@ public class MainActivityInteractorImpl implements MainActivityInteractor {
             public void onResponse(Call<ResponseApiMarvel> call, Response<ResponseApiMarvel> response) {
                 if (response.body() != null){
                     List<Result> results = response.body().getData().getResults();
-                    mainActivityPresenter.showResultPresenter(results);
+                    if (results.size() == 0){
+                        mainActivityPresenter.noResultsFound();
+                    }else{
+                        mainActivityPresenter.showResultPresenter(results);
+                    }
+
                 }
             }
 
