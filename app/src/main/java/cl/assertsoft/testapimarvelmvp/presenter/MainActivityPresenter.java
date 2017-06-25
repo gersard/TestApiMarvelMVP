@@ -18,5 +18,7 @@ public interface MainActivityPresenter {
     void convertDataToString(Result character);
     void goToDetail(String character);
     void getCharactersSearched(String character);
+    void setFavoriteCharacter(Result character, boolean isFavorite);
+    void showMessageFavorite(String name, boolean isFavorite);
 
 }

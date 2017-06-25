@@ -8,9 +8,11 @@ import java.util.List;
 
 import cl.assertsoft.testapimarvelmvp.R;
 import cl.assertsoft.testapimarvelmvp.api.ApiAdapter;
+import cl.assertsoft.testapimarvelmvp.model.CharacterRealm;
 import cl.assertsoft.testapimarvelmvp.presenter.MainActivityPresenter;
 import cl.assertsoft.testapimarvelmvp.model.ResponseApiMarvel;
 import cl.assertsoft.testapimarvelmvp.model.Result;
+import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -79,5 +81,24 @@ public class MainActivityInteractorImpl implements MainActivityInteractor {
         Gson gson = new Gson();
         String charact = gson.toJson(character);
         mainActivityPresenter.goToDetail(charact);
+    }
+
+    @Override
+    public void setFavoriteStatus(Result character, boolean isChecked) {
+        Realm realm = Realm.getDefaultInstance();
+        CharacterRealm characterRealm = realm.where(CharacterRealm.class).equalTo(CharacterRealm.CHARACTER_NAME,character.getName()).findFirst();
+        realm.beginTransaction();
+        if (characterRealm == null){
+            characterRealm = new CharacterRealm();
+            characterRealm.setCharacterId();
+            characterRealm.setCharacterName(character.getName());
+            characterRealm.setCharacterDescription(character.getDescription());
+            characterRealm.setCharacterFavorite(isChecked);
+            realm.copyToRealm(characterRealm);
+        }else{
+            characterRealm.setCharacterFavorite(isChecked);
+        }
+        realm.commitTransaction();
+        mainActivityPresenter.showMessageFavorite(character.getName(),isChecked);
     }
 }

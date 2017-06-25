@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TestApiMarvelMVP</string>
     <string name="action_settings">Settings</string>
+
+    <string name="add_favorite">Agregaste a %1$s a tus favoritos</string>
+    <string name="remove_favorite">Eliminaste a %1$s de tus favoritos</string>
+
 </resources>

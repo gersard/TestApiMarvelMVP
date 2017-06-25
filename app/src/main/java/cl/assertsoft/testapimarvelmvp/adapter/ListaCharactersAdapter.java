@@ -18,7 +18,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cl.assertsoft.testapimarvelmvp.R;
+import cl.assertsoft.testapimarvelmvp.model.CharacterRealm;
 import cl.assertsoft.testapimarvelmvp.model.Result;
+import io.realm.Realm;
 
 /**
  * Created by Gerardo on 17-06-2017.
@@ -42,25 +44,30 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
     }
 
     @Override
-    public void onBindViewHolder(CharacterViewHolder holder, final int position) {
+    public void onBindViewHolder(final CharacterViewHolder holder, int position) {
         final Result currentCharacter = results.get(position);
         holder.setCharacterPhoto(String.format("%1$s.%2$s", currentCharacter.getThumbnail().getPath(),
                 currentCharacter.getThumbnail().getExtension()));
         holder.setTxtCharacterName(currentCharacter.getName());
+        holder.setChecked(isCharacterFavorite(currentCharacter.getName()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (itemClickListener != null) {
-                    itemClickListener.onItemClick(currentCharacter, position);
+                    itemClickListener.onItemClick(currentCharacter, holder.getAdapterPosition());
                 }
             }
         });
 
+        holder.checkFavorite.setOnCheckedChangeListener(null);
+
         holder.checkFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                if (itemClickListener != null && buttonView.isShown()) {
+                    itemClickListener.onCheckedChangeListener(currentCharacter, isChecked);
+                }
             }
         });
 
@@ -81,12 +88,23 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
         }
     }
 
+    public boolean isCharacterFavorite(String name){
+        Realm realm = Realm.getDefaultInstance();
+        CharacterRealm characterRealm = realm.where(CharacterRealm.class).equalTo(CharacterRealm.CHARACTER_NAME,name).findFirst();
+        if (characterRealm == null){
+            return false;
+        }else{
+            return characterRealm.isCharacterFavorite();
+        }
+    }
+
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
     public interface ItemClickListener {
         void onItemClick(Result result, int position);
+        void onCheckedChangeListener(Result character, boolean isFavorite);
     }
 
     public class CharacterViewHolder extends RecyclerView.ViewHolder {
@@ -110,6 +128,10 @@ public class ListaCharactersAdapter extends RecyclerView.Adapter<ListaCharacters
 
         public void setTxtCharacterName(String characterName) {
             this.txtCharacterName.setText(characterName);
+        }
+
+        public void setChecked(boolean isChecked){
+            checkFavorite.setChecked(isChecked);
         }
     }
 

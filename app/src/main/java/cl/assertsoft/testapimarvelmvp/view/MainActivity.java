@@ -124,7 +124,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
                 public void onItemClick(Result result, int position) {
                     presenter.convertDataToString(result);
                 }
+
+                @Override
+                public void onCheckedChangeListener(Result character, boolean isFavorite) {
+                    presenter.setFavoriteCharacter(character,isFavorite);
+                }
             });
+
         }
     }
 
@@ -133,6 +139,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         Intent intent = new Intent(this, DetalleCharacterActivity.class);
         intent.putExtra("info", character);
         startActivity(intent);
+    }
+
+    @Override
+    public void showMessageFavorite(String name, boolean isFavorite) {
+        String message = (isFavorite) ? getString(R.string.add_favorite,name) : getString(R.string.remove_favorite,name);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 

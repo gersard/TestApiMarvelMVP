@@ -72,4 +72,18 @@ public class MainActivityPresenterImpl implements MainActivityPresenter {
         }
 
     }
+
+    @Override
+    public void setFavoriteCharacter(Result character, boolean isFavorite) {
+        if (mainActivityInteractor != null){
+            mainActivityInteractor.setFavoriteStatus(character,isFavorite);
+        }
+    }
+
+    @Override
+    public void showMessageFavorite(String name, boolean isFavorite) {
+        if (mainActivityView != null){
+            mainActivityView.showMessageFavorite(name,isFavorite);
+        }
+    }
 }

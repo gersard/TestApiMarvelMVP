@@ -13,5 +13,5 @@ public interface MainActivityInteractor {
     void getCharactersInteractor(Context context);
     void getCharactersSearched(Context context, String name);
     void convertResultToJson(Result character);
-
+    void setFavoriteStatus(Result character, boolean isChecked);
 }

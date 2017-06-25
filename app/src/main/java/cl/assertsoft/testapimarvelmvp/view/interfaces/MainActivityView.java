@@ -16,4 +16,5 @@ public interface MainActivityView {
     void showError(String error);
     void showResults(List<Result> characters);
     void goToDetail(String character);
+    void showMessageFavorite(String name, boolean isFavorite);
 }

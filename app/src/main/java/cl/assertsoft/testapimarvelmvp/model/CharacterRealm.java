@@ -1,5 +1,6 @@
 package cl.assertsoft.testapimarvelmvp.model;
 
+import cl.assertsoft.testapimarvelmvp.MyApplication;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -8,6 +9,9 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class CharacterRealm extends RealmObject {
+
+    public static final String CHARACTER_ID = "characterId";
+    public static final String CHARACTER_NAME = "characterName";
 
     @PrimaryKey
     private int characterId;
@@ -22,8 +26,8 @@ public class CharacterRealm extends RealmObject {
         return characterId;
     }
 
-    public void setCharacterId(int characterId) {
-        this.characterId = characterId;
+    public void setCharacterId() {
+        this.characterId = MyApplication.characterID.incrementAndGet();
     }
 
     public String getCharacterName() {
