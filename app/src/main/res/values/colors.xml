@@ -8,4 +8,6 @@
     <color name="colorSecondaryText">#757575</color>
     <color name="colorTransparentName">#4d212121</color>
     <color name="colorTextWhite">#FFFFFF</color>
+
+    <color name="white">#ffffff</color>
 </resources>

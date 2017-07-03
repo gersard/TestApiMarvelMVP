@@ -1,6 +1,8 @@
 package cl.assertsoft.testapimarvelmvp.interactor;
 
 import android.content.Context;
+import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
 
 import cl.assertsoft.testapimarvelmvp.model.Result;
 
@@ -16,8 +18,12 @@ public class InterfacesInteractor {
 
     public interface ListaFragmentInteractor{
         void getCharactersInteractor(Context context);
-        void getCharactersSearched(Context context, String name);
         void convertResultToJson(Result character);
         void setFavoriteStatus(Result character, boolean isChecked);
+        void getCharactersSearched(Context context, String name);
+    }
+
+    public interface MainActivityInteractor{
+        void navigateTo(MenuItem item, DrawerLayout drawerLayout);
     }
 }

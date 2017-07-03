@@ -6,8 +6,8 @@ import java.util.List;
 
 import cl.assertsoft.testapimarvelmvp.interactor.InterfacesInteractor;
 import cl.assertsoft.testapimarvelmvp.interactor.ListaFragmentInteractorImpl;
-import cl.assertsoft.testapimarvelmvp.view.interfaces.ListaFragmentView;
 import cl.assertsoft.testapimarvelmvp.model.Result;
+import cl.assertsoft.testapimarvelmvp.view.interfaces.InterfacesView;
 
 /**
  * Created by Gerardo on 17-06-2017.
@@ -15,12 +15,12 @@ import cl.assertsoft.testapimarvelmvp.model.Result;
 
 public class ListaFragmentPresenterImpl implements InterfacesPresenter.ListaFragmentPresenter {
     //Relación con la vista
-    private ListaFragmentView listaFragmentView;
+    private InterfacesView.ListaFragmentView listaFragmentView;
     //Relación con le Interactor
     private InterfacesInteractor.ListaFragmentInteractor listaFragmentInteractor;
     Context context;
 
-    public ListaFragmentPresenterImpl(ListaFragmentView listaFragmentView, Context context) {
+    public ListaFragmentPresenterImpl(InterfacesView.ListaFragmentView listaFragmentView, Context context) {
         this.listaFragmentView = listaFragmentView;
         listaFragmentInteractor = new ListaFragmentInteractorImpl(this);
         this.context = context;
@@ -62,14 +62,6 @@ public class ListaFragmentPresenterImpl implements InterfacesPresenter.ListaFrag
         }
     }
 
-    @Override
-    public void getCharactersSearched(String character) {
-        if (listaFragmentView != null){
-            listaFragmentView.actionProgress(true);
-            listaFragmentInteractor.getCharactersSearched(context,character);
-        }
-
-    }
 
     @Override
     public void setFavoriteCharacter(Result character, boolean isFavorite) {
@@ -89,6 +81,14 @@ public class ListaFragmentPresenterImpl implements InterfacesPresenter.ListaFrag
     public void noResultsFound() {
         if (listaFragmentView != null){
             listaFragmentView.noResultsFound();
+        }
+    }
+
+    @Override
+    public void seearchCharacter(String character) {
+        if (listaFragmentView != null){
+            listaFragmentView.actionProgress(true);
+            listaFragmentInteractor.getCharactersSearched(context,character);
         }
     }
 }

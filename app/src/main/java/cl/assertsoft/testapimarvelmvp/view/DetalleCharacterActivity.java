@@ -16,9 +16,9 @@ import cl.assertsoft.testapimarvelmvp.R;
 import cl.assertsoft.testapimarvelmvp.model.Result;
 import cl.assertsoft.testapimarvelmvp.presenter.DetailCharacterPresenterImpl;
 import cl.assertsoft.testapimarvelmvp.presenter.InterfacesPresenter;
-import cl.assertsoft.testapimarvelmvp.view.interfaces.DetailCharacterView;
+import cl.assertsoft.testapimarvelmvp.view.interfaces.InterfacesView;
 
-public class DetalleCharacterActivity extends AppCompatActivity implements DetailCharacterView {
+public class DetalleCharacterActivity extends AppCompatActivity implements InterfacesView.DetailCharacterView{
 
     @BindView(R.id.image_character_detail)
     ImageView imageCharacter;

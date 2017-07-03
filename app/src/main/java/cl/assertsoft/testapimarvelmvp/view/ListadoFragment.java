@@ -27,12 +27,12 @@ import cl.assertsoft.testapimarvelmvp.model.Result;
 import cl.assertsoft.testapimarvelmvp.presenter.InterfacesPresenter;
 import cl.assertsoft.testapimarvelmvp.presenter.ListaFragmentPresenterImpl;
 import cl.assertsoft.testapimarvelmvp.view.custom.RecyclerViewWithEmptySupport;
-import cl.assertsoft.testapimarvelmvp.view.interfaces.ListaFragmentView;
+import cl.assertsoft.testapimarvelmvp.view.interfaces.InterfacesView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListadoFragment extends Fragment implements ListaFragmentView {
+public class ListadoFragment extends Fragment implements InterfacesView.ListaFragmentView {
 
 
     @BindView(R.id.progress_bar)
@@ -48,6 +48,9 @@ public class ListadoFragment extends Fragment implements ListaFragmentView {
         // Required empty public constructor
     }
 
+    public static ListadoFragment newInstance(){
+        return new ListadoFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

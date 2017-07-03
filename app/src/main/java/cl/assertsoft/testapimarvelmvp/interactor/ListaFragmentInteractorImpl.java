@@ -53,6 +53,34 @@ public class ListaFragmentInteractorImpl implements InterfacesInteractor.ListaFr
         });
     }
 
+
+
+    @Override
+    public void convertResultToJson(Result character) {
+        Gson gson = new Gson();
+        String charact = gson.toJson(character);
+        listaFragmentPresenter.goToDetail(charact);
+    }
+
+    @Override
+    public void setFavoriteStatus(Result character, boolean isChecked) {
+        Realm realm = Realm.getDefaultInstance();
+        CharacterRealm characterRealm = realm.where(CharacterRealm.class).equalTo(CharacterRealm.CHARACTER_NAME,character.getName()).findFirst();
+        realm.beginTransaction();
+        if (characterRealm == null){
+            characterRealm = new CharacterRealm();
+            characterRealm.setCharacterId();
+            characterRealm.setCharacterName(character.getName());
+            characterRealm.setCharacterDescription(character.getDescription());
+            characterRealm.setCharacterFavorite(isChecked);
+            realm.copyToRealm(characterRealm);
+        }else{
+            characterRealm.setCharacterFavorite(isChecked);
+        }
+        realm.commitTransaction();
+        listaFragmentPresenter.showMessageFavorite(character.getName(),isChecked);
+    }
+
     @Override
     public void getCharactersSearched(Context context, String name) {
         String ts = context.getString(R.string.timestamp_api_key);
@@ -79,31 +107,5 @@ public class ListaFragmentInteractorImpl implements InterfacesInteractor.ListaFr
                 listaFragmentPresenter.showErrorPresenter(t.getMessage());
             }
         });
-    }
-
-    @Override
-    public void convertResultToJson(Result character) {
-        Gson gson = new Gson();
-        String charact = gson.toJson(character);
-        listaFragmentPresenter.goToDetail(charact);
-    }
-
-    @Override
-    public void setFavoriteStatus(Result character, boolean isChecked) {
-        Realm realm = Realm.getDefaultInstance();
-        CharacterRealm characterRealm = realm.where(CharacterRealm.class).equalTo(CharacterRealm.CHARACTER_NAME,character.getName()).findFirst();
-        realm.beginTransaction();
-        if (characterRealm == null){
-            characterRealm = new CharacterRealm();
-            characterRealm.setCharacterId();
-            characterRealm.setCharacterName(character.getName());
-            characterRealm.setCharacterDescription(character.getDescription());
-            characterRealm.setCharacterFavorite(isChecked);
-            realm.copyToRealm(characterRealm);
-        }else{
-            characterRealm.setCharacterFavorite(isChecked);
-        }
-        realm.commitTransaction();
-        listaFragmentPresenter.showMessageFavorite(character.getName(),isChecked);
     }
 }
