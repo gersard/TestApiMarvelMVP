@@ -3,18 +3,17 @@ package cl.assertsoft.testapimarvelmvp.interactor;
 import com.google.gson.Gson;
 
 import cl.assertsoft.testapimarvelmvp.model.Result;
-import cl.assertsoft.testapimarvelmvp.presenter.DetailCharacterPresenter;
-import cl.assertsoft.testapimarvelmvp.presenter.MainActivityPresenter;
+import cl.assertsoft.testapimarvelmvp.presenter.InterfacesPresenter;
 
 /**
  * Created by Gerardo on 22-06-2017.
  */
 
-public class DetailCharacterInteractorImpl implements DetailCharacterInteractor {
+public class DetailCharacterInteractorImpl implements InterfacesInteractor.DetailCharacterInteractor {
 
-    DetailCharacterPresenter presenter;
+    InterfacesPresenter.DetailCharacterPresenter presenter;
 
-    public DetailCharacterInteractorImpl(DetailCharacterPresenter presenter) {
+    public DetailCharacterInteractorImpl(InterfacesPresenter.DetailCharacterPresenter presenter) {
         this.presenter = presenter;
     }
 

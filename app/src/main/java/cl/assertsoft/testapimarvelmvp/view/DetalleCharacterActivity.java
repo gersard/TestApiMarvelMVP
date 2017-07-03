@@ -14,8 +14,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cl.assertsoft.testapimarvelmvp.R;
 import cl.assertsoft.testapimarvelmvp.model.Result;
-import cl.assertsoft.testapimarvelmvp.presenter.DetailCharacterPresenter;
 import cl.assertsoft.testapimarvelmvp.presenter.DetailCharacterPresenterImpl;
+import cl.assertsoft.testapimarvelmvp.presenter.InterfacesPresenter;
 import cl.assertsoft.testapimarvelmvp.view.interfaces.DetailCharacterView;
 
 public class DetalleCharacterActivity extends AppCompatActivity implements DetailCharacterView {
@@ -29,7 +29,7 @@ public class DetalleCharacterActivity extends AppCompatActivity implements Detai
     @BindView(R.id.txt_character_info_name_detail)
     TextView txtCharacterInfo;
 
-    private DetailCharacterPresenter presenter;
+    private InterfacesPresenter.DetailCharacterPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
