@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="205dp"
+    android:layout_height="205dp"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/img_view_favorite_character_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@color/colorAccent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorTransparentName" />
+
+    <TextView
+        android:id="@+id/txt_favorite_character_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:shadowColor="@color/colorSecondaryText"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="Spider-Man"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="20dp" />
+
+    <CheckBox
+        android:id="@+id/check_favorite_character_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:button="@drawable/selector_heart_checkbox"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

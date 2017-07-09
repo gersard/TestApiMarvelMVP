@@ -26,4 +26,8 @@ public class InterfacesInteractor {
     public interface MainActivityInteractor{
         void navigateTo(MenuItem item, DrawerLayout drawerLayout);
     }
+
+    public interface FavoriteFragmentInteractor{
+        void getFavoriteCharacters();
+    }
 }

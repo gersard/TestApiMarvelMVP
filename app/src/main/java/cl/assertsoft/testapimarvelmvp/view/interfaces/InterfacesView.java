@@ -4,7 +4,9 @@ import android.support.v4.app.Fragment;
 
 import java.util.List;
 
+import cl.assertsoft.testapimarvelmvp.model.CharacterRealm;
 import cl.assertsoft.testapimarvelmvp.model.Result;
+import io.realm.RealmResults;
 
 /**
  * Created by Gerardo on 02-07-2017.
@@ -28,6 +30,10 @@ public class InterfacesView {
         void goToDetail(String character);
         void showMessageFavorite(String name, boolean isFavorite);
         void noResultsFound();
+    }
+
+    public interface FavoriteFragmentView{
+        void showFavoriteCharacters(RealmResults<CharacterRealm> characterRealmRealmResults);
     }
 
 }

@@ -12,12 +12,14 @@ public class CharacterRealm extends RealmObject {
 
     public static final String CHARACTER_ID = "characterId";
     public static final String CHARACTER_NAME = "characterName";
+    public static final String CHARACTER_FAVORITE = "characterFavorite";
 
     @PrimaryKey
     private int characterId;
     private String characterName;
     private String characterDescription;
     private boolean characterFavorite;
+    private String urlImage;
 
     public CharacterRealm() {
     }
@@ -52,5 +54,13 @@ public class CharacterRealm extends RealmObject {
 
     public void setCharacterFavorite(boolean characterFavorite) {
         this.characterFavorite = characterFavorite;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

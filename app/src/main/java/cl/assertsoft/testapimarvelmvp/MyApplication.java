@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import cl.assertsoft.testapimarvelmvp.model.CharacterRealm;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 
@@ -25,7 +26,10 @@ public class MyApplication extends Application {
         super.onCreate();
         Realm.init(this);
 //        RealmLog.setLevel(LogLevel.ALL);
-
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(realmConfig);
         Realm realm = Realm.getDefaultInstance();
         characterID = getIdByTable(realm, CharacterRealm.class,CharacterRealm.CHARACTER_ID);
         realm.close();

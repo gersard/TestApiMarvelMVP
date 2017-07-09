@@ -73,6 +73,7 @@ public class ListaFragmentInteractorImpl implements InterfacesInteractor.ListaFr
             characterRealm.setCharacterName(character.getName());
             characterRealm.setCharacterDescription(character.getDescription());
             characterRealm.setCharacterFavorite(isChecked);
+            characterRealm.setUrlImage(character.getThumbnail().getPath()+"."+character.getThumbnail().getExtension());
             realm.copyToRealm(characterRealm);
         }else{
             characterRealm.setCharacterFavorite(isChecked);

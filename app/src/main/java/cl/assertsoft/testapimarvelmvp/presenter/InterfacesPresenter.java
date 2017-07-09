@@ -6,7 +6,9 @@ import android.view.MenuItem;
 
 import java.util.List;
 
+import cl.assertsoft.testapimarvelmvp.model.CharacterRealm;
 import cl.assertsoft.testapimarvelmvp.model.Result;
+import io.realm.RealmResults;
 
 /**
  * Created by Gerardo on 02-07-2017.
@@ -34,6 +36,11 @@ public class InterfacesPresenter {
     public interface MainActivityPresenter{
         void navigateFragment(Fragment fragment);
         void navigationItemSelected(MenuItem item, DrawerLayout drawerLayout);
+    }
+
+    public interface FavoriteFragmentPresenter{
+        void getFavoriteCharacters();
+        void showFavoriteList(RealmResults<CharacterRealm> characterRealms);
     }
 
 }

@@ -79,12 +79,14 @@ public class ListadoFragment extends Fragment implements InterfacesView.ListaFra
 
     @Override
     public void actionProgress(boolean show) {
-        if (show) {
-            mProgressBar.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.GONE);
-            mTxtEmptyView.setVisibility(View.GONE);
-        } else {
-            mProgressBar.setVisibility(View.GONE);
+        if (mProgressBar != null && mRecyclerView != null){
+            if (show) {
+                mProgressBar.setVisibility(View.VISIBLE);
+                mRecyclerView.setVisibility(View.GONE);
+                mTxtEmptyView.setVisibility(View.GONE);
+            } else {
+                mProgressBar.setVisibility(View.GONE);
+            }
         }
     }
 
